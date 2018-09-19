@@ -2,19 +2,27 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
+<style type="text/css">  <%@include file="WEB-INF/form_style.css" %> </style>
 <head>
+<link rel="stylesheet" type="text/css" href="bootstrap.css">
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-<form action="AutenticaUsuario">
- 	login:<br>
- 	<input type="text" name="login">
- 	<br>
-	senha:<br>
-	<input type="password" name="senha">
-	<br><br>
-	<input type="submit" value="Submit">
-</form> 
+
+
+<div class="login-page">
+  <div class="form">
+    <form class="login-form" action="AutenticaUsuario">
+    <h3>Login</h3>
+      <input type="text" name="login" placeholder="username"/>
+      <input type="password" name="senha" placeholder="password"/>
+      <input id="botao" type="submit" value="Entrar">
+    </form>
+  </div>
+</div>
+
+
+
 </body>
 </html>
