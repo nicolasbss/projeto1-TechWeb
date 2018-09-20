@@ -8,12 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@ page import="java.util.*,br.edu.insper.techweb.projeto1.*" %>
-
-   	
-   	
-   	<div class="login-page">
-  <div class="form">
+<%@ page import="java.util.*,br.edu.insper.techweb.projeto1.*" %>
+	
+<div class="login-page">
+	<div class="form">
     <form class="login-form" action = "AlteraCredenciais" method="POST">
     	<% int id = (Integer) request.getAttribute("idNota");
 		int pessoa_id = (Integer) request.getAttribute("pessoa_id");%>
@@ -23,7 +21,7 @@
       <input type ="hidden" name = "pessoa_id" value=<%=pessoa_id %>>
       <input id="botao" type="submit" value="Mudar">
     </form>
-  </div>
+	</div>
 </div>
 </body>
 </html>

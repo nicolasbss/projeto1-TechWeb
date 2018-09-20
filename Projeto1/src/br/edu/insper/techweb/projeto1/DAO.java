@@ -24,6 +24,31 @@ public class DAO {
 		}
 	}
 	
+	public String getNota(int id) {
+		String conteudo = "erro1";
+		
+		PreparedStatement stmt;
+		ResultSet rs;
+		String sql = "SELECT * FROM Notas WHERE id=?";
+		try {
+			stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				conteudo = rs.getString("conteudo");
+				System.out.println("teste:");
+				System.out.println(conteudo);
+				return (rs.getString("conteudo"));
+			}else {
+				return "erro";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return conteudo;	
+	}
+	
 	public List<Notas> getListaNotas(int id) {
 		
 		List<Notas> notas = new ArrayList<Notas>();
@@ -40,7 +65,6 @@ public class DAO {
 				Notas nota = new Notas();				
 				nota.setId(rs.getInt("id"));
 				nota.setTipo(rs.getString("tipo"));
-				nota.setDateTime();
 				nota.setConteudo(rs.getString("conteudo"));
 				nota.setPessoa_id(rs.getInt("pessoa_id"));				
 				notas.add(nota);
@@ -60,6 +84,43 @@ public class DAO {
 		}
 		
 		
+		return notas;
+	}
+	
+	public List<Notas> getListaNotasOrdenadas(int id) {
+		
+		List <Notas> notas = new ArrayList<Notas>();
+		
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			stmt = connection.prepareStatement("SELECT * FROM Notas WHERE pessoa_id=? ORDER BY data_atualizada DESC;");
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				Notas nota = new Notas();				
+				nota.setId(rs.getInt("id"));
+				nota.setTipo(rs.getString("tipo"));
+				nota.setConteudo(rs.getString("conteudo"));
+				nota.setPessoa_id(rs.getInt("pessoa_id"));				
+				notas.add(nota);
+			}
+		} catch (SQLException e) {
+			System.out.println("asjhias");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
 		return notas;
 	}
 	
@@ -98,14 +159,14 @@ public class DAO {
 	
 	public void alteraNota(Notas nota) {
 		String sql = "UPDATE Notas SET " +
-		 "tipo=?, data=?, conteudo=? WHERE id=?";
-		PreparedStatement stmt;
+				 "tipo=?, conteudo=?, data_atualizada=? WHERE id=?";
+				PreparedStatement stmt;
 		try {
 			stmt = connection.prepareStatement(sql);
 			stmt.setString(1, nota.getTipo());
-			stmt.setString(2, nota.getDateTime());
-			stmt.setString(3, nota.getConteudo());
-			stmt.setInt(4, nota.getId());
+			stmt.setString(2, nota.getConteudo());
+			stmt.setString(3, nota.getDataAtualizada());
+			stmt.setInt(4, nota.getId());			
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
@@ -180,6 +241,27 @@ public class DAO {
 		}
 	return 0;
 	}
+	public String horarioCriacao(Notas nota) {
+		PreparedStatement stmt;
+		String sql = "SELECT * FROM notas WHERE id=?";
+		ResultSet rs;
+		
+		try {
+			stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, nota.getId());
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				return rs.getString("data");
+			}
+			else {
+				return "none";
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		return "none";
+	}
+	
 	
 	public void close() {
 		try {

@@ -9,16 +9,18 @@
 </head>
 <body>
 	<%@ page import="java.util.*,br.edu.insper.techweb.projeto1.*" %>
-
+	
     
     <div class="login-page">
   <div class="form">
     <form class="login-form" action="AtualizaNotas" method="POST">
-    <% int id = (Integer) request.getAttribute("idNota");
-    int pessoa_id = (Integer) request.getAttribute("pessoa_id");%>
+    <% DAO dao = new DAO();
+    int id = (Integer) request.getAttribute("idNota");
+    int pessoa_id = (Integer) request.getAttribute("pessoa_id");
+    String text = dao.getNota(id);%>
     <h3>Atualizar Nota</h3>
     Tipo: <select name='tipo'><option value='texto'>Texto </option></select><br><br>
-      <input type="text" name="conteudo" placeholder="conteudo"/>
+      <input type="text" name="conteudo" value='<%=text%>'/>
       <input type ="hidden" name = "id" value= <%=id %>>
       <input type ="hidden" name = "pessoa_id" value=<%=pessoa_id %>>
       <input id="botao" type="submit" value="Atualizar">

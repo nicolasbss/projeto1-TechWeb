@@ -37,6 +37,7 @@ public class AtualizaNotas extends HttpServlet {
     			nota.setTipo(request.getParameter("tipo"));
     			nota.setConteudo((request.getParameter("conteudo")));
     			nota.setDateTime();
+    			nota.setDataAtualizada(nota.getDateTime());
     			dao.alteraNota(nota);
     		
     			dao.close();
@@ -56,10 +57,26 @@ public class AtualizaNotas extends HttpServlet {
 					this.doPost(request, response);
 				}
 				else {
+					DAO dao = new DAO();
+				
 					int id = Integer.valueOf(request.getParameter("id"));
+					String texto = dao.getNota(id);
 					request.setAttribute("idNota", id);
 					request.setAttribute("pessoa_id", Integer.valueOf(request.getParameter("pessoa_id")));
 					request.getRequestDispatcher("atualizanotas.jsp").forward(request, response);
 				}
 			}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

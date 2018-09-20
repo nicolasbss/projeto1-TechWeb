@@ -1,7 +1,6 @@
 package br.edu.insper.techweb.projeto1;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -57,7 +56,7 @@ public class AutenticaUsuario extends HttpServlet {
 				} else {
 					request.setAttribute("usuario", id);
 					request.getRequestDispatcher("index.jsp").forward(request,response);
-				}
-				
+				}				
 	}
+	
 }

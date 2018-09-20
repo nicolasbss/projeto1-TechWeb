@@ -9,6 +9,7 @@ public class Notas {
 	private String tipo;
 	private String datetime;
 	private int pessoa_id;
+	private String data_atualizada;
 	
 	public Integer getId() {
 		return this.id;
@@ -34,6 +35,14 @@ public class Notas {
 		Calendar c = Calendar.getInstance();
 		 String dateTime = c.get(Calendar.YEAR) + "-" + c.get(Calendar.MONTH) + "-" + c.get(Calendar.DAY_OF_MONTH) + " " + c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE) + ":" + c.get(Calendar.SECOND);
 		this.datetime = dateTime;
+	}
+	
+	public String getDataAtualizada() {
+		return this.data_atualizada;
+	}
+	
+	public void setDataAtualizada(String data_atualizada) {
+		this.data_atualizada = data_atualizada;
 	}
 	
 	public String getConteudo() {

@@ -3,15 +3,21 @@
 
 <!DOCTYPE html>
 <html>
+<style type="text/css">  <%@include file="WEB-INF/form_style.css" %> </style>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Registrar</title>
 </head>
 <body>
-	<form action = "CriaPessoas" method='post'>
-		Escolha seu login: <input type='text' name='login'><br> 
-		Escolha sua senha: <input type='text' name='senha'><br>
-		<input type='submit' value='Submit'>
+<div class="login-page">
+  <div class="form">
+	<form class="login-form" action = "CriaPessoas" method='post'>
+	<h3>Registrar</h3>
+		<input type='text' name='login' placeholder="username">
+		<input type="password" name="senha" placeholder="password"/>
+		<input id="botao" type="submit" value="Registrar">
 	</form>
+	  </div>
+</div>
 </body>
 </html>

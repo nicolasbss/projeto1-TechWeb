@@ -6,7 +6,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="bootstrap.css">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Login</title>
 </head>
 <body>
 
@@ -19,6 +19,7 @@
       <input type="password" name="senha" placeholder="password"/>
       <input id="botao" type="submit" value="Entrar">
     </form>
+    <p class="message">Not registered? <a href="/Projeto1/criapessoas.jsp">Create an account</a></p>
   </div>
 </div>
 
